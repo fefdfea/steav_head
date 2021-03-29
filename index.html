@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="keywords" content="스티브 머리,스티브">
+	<meta name="description" content="심심해서 만들어본 스티브 머리">
+	<meta http-equiv="Generator" content="Bracket" />
+	<title>스티브 머리</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		div {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.container {
+			width: 100vw;
+			height: 100vh;
+			background-color: chartreuse;
+			perspective: 500px;
+		}
+
+		.steav {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			transform-style: preserve-3d;
+		}
+
+		.head-box {
+			width: 500px;
+			height: 500px;
+			transition: all 0.5s ease;
+		}
+
+		.head_box {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: #aa7d66
+		}
+
+		.hair {
+			position: relative;
+			width: 100%;
+			height: 20%;
+			background: RGB(48, 33, 16);
+			cursor: pointer;
+			transition: all 3s ease;
+		}
+
+		.hair.hair-ani {
+			transform: translateY(-200px);
+		}
+
+		.left-hair {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 10%;
+			height: 150%;
+			background: RGB(48, 33, 16);
+		}
+
+		.right-hair {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 10%;
+			height: 150%;
+			background: RGB(48, 33, 16);
+		}
+
+		.eyes {
+			position: relative;
+			width: 100%;
+			height: 62.5px;
+			top: 20%;
+		}
+
+		.white {
+			background: #fff;
+			cursor: pointer;
+		}
+
+		.left-eye {
+			position: absolute;
+			width: 150px;
+			height: 100%;
+			top: 0;
+			left: 10%;
+		}
+
+		.left-pupil-ani {
+			transform: translate(-100%);
+		}
+
+		.right-eye {
+			position: absolute;
+			width: 150px;
+			height: 100%;
+			top: 0;
+			right: 10%;
+		}
+
+		.left-pupil {
+			position: absolute;
+			width: 50%;
+			height: 100%;
+			top: 0;
+			right: 0;
+			background: RGB(81, 62, 149);
+			transition: all 0.5s ease;
+		}
+
+
+		.right-pupil {
+			position: absolute;
+			width: 50%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			background: RGB(81, 62, 149);
+			transition: all 0.5s ease;
+		}
+
+		.right-pupil.right-pupil-ani {
+			transform: translateX(100%);
+		}
+
+		.nose {
+			width: 20%;
+			height: 10%;
+			position: absolute;
+			top: 60%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: RGB(109, 68, 52);
+		}
+
+		.mouse {
+			width: 20%;
+			height: 10%;
+			position: absolute;
+			top: 69%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: RGB(147, 80, 64);
+		}
+
+		.mustache {
+			width: 50%;
+			height: 15%;
+			position: absolute;
+			top: 84%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: RGB(67, 35, 12);
+		}
+
+		.left-mustache {
+			position: absolute;
+			left: 0;
+			top: -120%;
+			width: 20%;
+			height: 130%;
+			background: RGB(67, 35, 12);
+			transform-origin: bottom;
+			transition: all 0.5s ease;
+			cursor: pointer;
+		}
+
+		.left-mustache.left-mustache-ani {
+			transform: rotateX(180deg);
+			height: 170%;
+		}
+
+		.right-mustache {
+			position: absolute;
+			right: 0;
+			top: -120%;
+			width: 20%;
+			height: 130%;
+			background: RGB(67, 35, 12);
+			transform-origin: bottom;
+			transition: all 0.5s ease;
+			cursor: pointer;
+		}
+
+		.right-mustache.right_mustache-ani {
+			transform: rotateX(180deg);
+			height: 170%;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="steav">
+			<div class="head-box">
+				<div class="head_box">
+					<div class="hair" id="hair">
+						<div class="left-hair">
+						</div>
+						<div class="right-hair"></div>
+					</div>
+					<div class="eyes">
+						<div class="white left-eye">
+							<div class="left-pupil"></div>
+						</div>
+						<div class="white right-eye">
+							<div class="right-pupil"></div>
+						</div>
+					</div>
+					<div class="nose"></div>
+					<div class="mouse"></div>
+					<div class="mustache">
+						<div class="left-mustache"></div>
+						<div class="right-mustache"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./jquery-3.5.1.min.js"></script>
+	<script>
+		(function() {
+			let hair = $('.hair');
+			let left_eye = $('.left-eye');
+			let right_eye = $('.right-eye');
+			let left_pupil = $('.left-pupil');
+			let right_pupil = $('.right-pupil');
+			let left_mustache = $('.left-mustache');
+			let right_mustache = $('.right-mustache');
+			hair.click(function() {
+				hair.toggleClass('hair-ani');
+			});
+
+			left_eye.on('click', function() {
+				left_pupil.toggleClass('left-pupil-ani')
+			});
+
+			right_eye.on('click', function() {
+				right_pupil.toggleClass('right-pupil-ani')
+			});
+
+			left_mustache.on('click', function() {
+				left_mustache.toggleClass('left-mustache-ani');
+			});
+
+			right_mustache.on('click', function() {
+				right_mustache.toggleClass('right_mustache-ani');
+			});
+		})();
+
+	</script>
+</body>
+
+</html>
